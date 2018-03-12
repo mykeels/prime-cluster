@@ -4,6 +4,9 @@ const os = require('os')
 const app = express()
 
 app.get('/', (req, res) => {
+    for (let i = 0; i <= 20000000; i++) {
+        
+    }
     res.send('Hello World')
 })
 
