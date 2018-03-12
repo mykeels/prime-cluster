@@ -1,13 +1,15 @@
 const express = require('express')
 const os = require('os')
-
+const isPrime = require('./is-prime')
 const app = express()
 
 app.get('/', (req, res) => {
-    for (let i = 0; i <= 20000000; i++) {
-        
+    const primes = []
+    const max = Number(req.query.max) || 1000
+    for (let i = 1; i <= max; i++) {
+        if (isPrime(i)) primes.push(i)
     }
-    res.send('Hello World')
+    res.json(primes)
 })
 
 app.get('/cpus', (req, res) => {
