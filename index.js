@@ -1,15 +1,15 @@
 const express = require('express')
 const os = require('os')
-const isPrime = require('./is-prime')
 const app = express()
+const workerFarm = require('worker-farm')
+const worker = workerFarm(require.resolve('./worker.js'))
 
 app.get('/', (req, res) => {
-    const primes = []
     const max = Number(req.query.max) || 1000
-    for (let i = 1; i <= max; i++) {
-        if (isPrime(i)) primes.push(i)
-    }
-    res.json(primes)
+    worker(max, (err, primes) => {
+        if (err) res.status(500).send(err)
+        else res.json(primes)
+    })
 })
 
 app.get('/cpus', (req, res) => {
