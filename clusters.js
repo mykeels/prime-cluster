@@ -16,3 +16,8 @@ else {
         })
     })
 }
+
+cluster.on('exit', (worker) => {
+    console.log('mayday! mayday! worker', worker.id, ' is no more!')
+    cluster.fork()
+})
