@@ -1,5 +1,4 @@
 const express = require('express')
-const os = require('os')
 const isPrime = require('./is-prime')
 const app = express()
 
@@ -12,11 +11,7 @@ app.get('/', (req, res) => {
     res.json(primes)
 })
 
-app.get('/cpus', (req, res) => {
-    res.json(os.cpus())
-})
-
-app.listen(process.env.POST || 3030)
+app.listen(process.env.PORT || 3030)
 
 console.log('app is running!')
 
