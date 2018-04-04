@@ -12,11 +12,7 @@ app.get('/', (req, res) => {
     })
 })
 
-app.get('/cpus', (req, res) => {
-    res.json(os.cpus())
-})
-
-app.listen(process.env.POST || 3030)
+app.listen(process.env.PORT || 3030)
 
 console.log('app is running!')
 
