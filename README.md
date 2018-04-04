@@ -2,6 +2,10 @@
 
 A simple API to retrieve a list of prime numbers between 1 and a supplied limit.
 
+## Cluster Mode
+
+This program runs in cluster mode. It determines the number of available CPU cores and makes forks of itself to run on each of these cores.
+
 ## Installation
 
 ```bash
