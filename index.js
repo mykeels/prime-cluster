@@ -14,8 +14,11 @@ const calculateHash = function (req, res, buf, encoding){
 
 const textBodyParser = require('body-parser').text({ verify: calculateHash })
 
+const storage = {}
+
 app.post('/', textBodyParser, (req, res) => {
-    res.send(req.hash)
+    storage[req.hash] = storage[req.hash] || req.body.split('\n').map((line) => line.split('').reverse().join('')).join('\n')
+    res.send(storage[req.hash])
 })
 
 app.get('/', (req, res) => {
