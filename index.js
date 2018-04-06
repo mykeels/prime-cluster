@@ -1,6 +1,11 @@
 const express = require('express')
+const textBodyParser = require('body-parser').text()
 const isPrime = require('./is-prime')
 const app = express()
+
+app.post('/', textBodyParser, (req, res) => {
+    res.send(req.body.split('\n').map((line) => line.split('').reverse().join('')).join('\n'))
+})
 
 app.get('/', (req, res) => {
     const primes = []
